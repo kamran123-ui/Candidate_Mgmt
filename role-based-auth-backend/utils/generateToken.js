@@ -1,3 +1,5 @@
+// Is function ka use hum login ke time karenge —
+// jab user sahi password dalega, to uske liye JWT token banega.
 import jwt from "jsonwebtoken";
 
 const generateToken = (id, role) => {

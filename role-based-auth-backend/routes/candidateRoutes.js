@@ -1,3 +1,4 @@
+// es code se candidate apna profile dekh sakta hai
 import express from "express";
 import User from "../models/User.js";
 import { protect } from "../middleware/authMiddleware.js";

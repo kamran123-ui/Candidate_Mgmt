@@ -49,7 +49,7 @@ const AdminDashboard = () => {
       <h2>Admin Dashboard</h2>
 
       <h3>Create Candidate</h3>
-      <input placeholder="Name" onChange={(e)=>setNewName(e.target.value)} />
+      <input placeholder="Enter the Name" onChange={(e)=>setNewName(e.target.value)} />
       <input placeholder="Email" onChange={(e)=>setNewEmail(e.target.value)} />
       <input placeholder="Password" onChange={(e)=>setNewPass(e.target.value)} />
       <button onClick={createCandidate}>Create</button>

@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 
 export const protect = (roles = []) => {
   return (req, res, next) => {
+   // here token  read ho rha h
     const token = req.headers.authorization?.split(" ")[1];
 
     if (!token) {

@@ -10,7 +10,7 @@ const router = express.Router();
  * @desc Admin creates a candidate
  */
 router.post("/create-candidate", protect(["admin"]), async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email,mobile,address, password } = req.body;
 
   try {
     // Check if candidate already exists
@@ -22,6 +22,8 @@ router.post("/create-candidate", protect(["admin"]), async (req, res) => {
     const candidate = await User.create({
       name,
       email,
+      mobile,
+      address,
       password: hashedPassword,
       role: "candidate",
     });
@@ -31,6 +33,8 @@ router.post("/create-candidate", protect(["admin"]), async (req, res) => {
       candidate: {
         _id: candidate._id,
         name: candidate.name,
+        mobile: candidate.mobile,
+        address: candidate.address,
         email: candidate.email,
       },
     });
