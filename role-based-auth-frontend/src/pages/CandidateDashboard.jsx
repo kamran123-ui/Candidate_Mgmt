@@ -4,9 +4,10 @@ import axios from "axios";
 const CandidateDashboard = () => {
   const [profile, setProfile] = useState(null);
   const token = localStorage.getItem("token");
+  const API = process.env.REACT_APP_API_URL;
 
   const fetchProfile = async () => {
-    const res = await axios.get("http://localhost:5000/api/candidate/profile", {
+    const res = await axios.get(`${API}/api/candidate/profile`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     setProfile(res.data);

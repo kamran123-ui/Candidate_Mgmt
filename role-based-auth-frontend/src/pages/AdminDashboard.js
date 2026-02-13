@@ -567,12 +567,14 @@ function AdminDashboard() {
   const [editId, setEditId] = useState(null);
   const [candidates, setCandidates] = useState([]);
   const [loading, setLoading] = useState(true);
+  const API = process.env.REACT_APP_API_URL;
+
 
   const token = localStorage.getItem("token");
 
   const fetchCandidates = async () => {
-    try {
-      const res = await axios.get("http://localhost:5000/api/admin/candidates", {
+    try {                                      //  http://localhost:5000
+      const res = await axios.get(`${API}/api/admin/candidates`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -599,8 +601,8 @@ function AdminDashboard() {
 
   const createCandidate = async () => {
     try {
-      await axios.post(
-        "http://localhost:5000/api/admin/create-candidate",
+      await axios.post(   //http://localhost:5000
+        `${API}/api/admin/create-candidate` ,
         { name, email, mobile, address, password },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -614,8 +616,8 @@ function AdminDashboard() {
 
   const updateCandidate = async () => {
     try {
-      await axios.put(
-        `http://localhost:5000/api/admin/update-candidate/${editId}`,
+      await axios.put(   //http://localhost:5000
+        `${API}/api/admin/update-candidate/${editId}`,
         { name, email, mobile, address },
         {
           headers: {
@@ -638,8 +640,8 @@ function AdminDashboard() {
   };
 
   const handleDelete = async (id) => {
-    try {
-      await axios.delete(`http://localhost:5000/api/admin/delete-candidate/${id}`, {
+    try {         //http://localhost:5000
+      await axios.delete(`${API}/api/admin/delete-candidate/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchCandidates();
