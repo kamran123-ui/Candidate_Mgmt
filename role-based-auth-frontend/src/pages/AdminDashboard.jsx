@@ -8,12 +8,10 @@ const AdminDashboard = () => {
   const [newPass, setNewPass] = useState("");
 
   const token = localStorage.getItem("token");
-  const API = process.env.REACT_APP_API_URL;
-
 
   // Fetch all candidates
-  const fetchCandidates = async () => {    //http://localhost:5000
-    const res = await axios.get(`${API}/api/admin/candidates`, {
+  const fetchCandidates = async () => {    
+    const res = await axios.get("http://localhost:5000/api/admin/candidates", {
       headers: { Authorization: `Bearer ${token}` },
     });
     setCandidates(res.data);
@@ -22,7 +20,7 @@ const AdminDashboard = () => {
   // Create candidate
   const createCandidate = async () => {
     await axios.post(
-      `${API}/api/admin/create-candidate`,
+      "http://localhost:5000/api/admin/create-candidate",
       {
         name: newName,
         email: newEmail,
@@ -36,7 +34,7 @@ const AdminDashboard = () => {
   // Delete candidate
   const deleteCandidate = async (id) => {
     await axios.delete(
-      `${API}/api/admin/delete-candidate/${id}`,
+      `http://localhost:5000/api/admin/delete-candidate/${id}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
     fetchCandidates();
