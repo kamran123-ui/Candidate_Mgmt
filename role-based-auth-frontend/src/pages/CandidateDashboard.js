@@ -62,7 +62,7 @@ function CandidateDashboard() {
   const fetchProfile = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/candidate/profile`,
+        `https://role-based-auth-backend-rc2g.onrender.com/api/candidate/profile`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

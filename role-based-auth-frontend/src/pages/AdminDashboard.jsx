@@ -11,7 +11,7 @@ const AdminDashboard = () => {
 
   // Fetch all candidates
   const fetchCandidates = async () => {    
-    const res = await axios.get("http://localhost:5000/api/admin/candidates", {
+    const res = await axios.get("https://role-based-auth-backend-rc2g.onrender.com/api/admin/candidates", {
       headers: { Authorization: `Bearer ${token}` },
     });
     setCandidates(res.data);
@@ -20,7 +20,7 @@ const AdminDashboard = () => {
   // Create candidate
   const createCandidate = async () => {
     await axios.post(
-      "http://localhost:5000/api/admin/create-candidate",
+      "https://role-based-auth-backend-rc2g.onrender.com/api/admin/create-candidate",
       {
         name: newName,
         email: newEmail,
@@ -34,7 +34,7 @@ const AdminDashboard = () => {
   // Delete candidate
   const deleteCandidate = async (id) => {
     await axios.delete(
-      `http://localhost:5000/api/admin/delete-candidate/${id}`,
+      `https://role-based-auth-backend-rc2g.onrender.com/api/admin/delete-candidate/${id}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
     fetchCandidates();
