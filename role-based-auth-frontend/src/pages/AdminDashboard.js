@@ -1,6 +1,39 @@
 
 
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+// import axios from "axios";
+
+// function AdminDashboard() {
+//   const [name, setName] = useState("");
+//   const [email, setEmail] = useState("");
+//   const [mobile, setMobile] = useState("");
+//   const [address, setAddress] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [editMode, setEditMode] = useState(false);
+//   const [editId, setEditId] = useState(null);
+//   const [candidates, setCandidates] = useState([]);
+//   const [loading, setLoading] = useState(true);
+
+//   const token = localStorage.getItem("token");
+
+//   const fetchCandidates = async () => {
+//     try {
+//       const res = await axios.get("https://role-based-auth-backend-rc2g.onrender.com/api/admin/candidates", {
+//         headers: { Authorization: `Bearer ${token}` },
+//       });
+
+//       setCandidates(res.data);
+//       setLoading(false);
+//     } catch (err) {
+//       console.log("Error loading candidates");
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchCandidates();
+//   }, []);
+
+import { useEffect, useState, useCallback } from "react"; // 1. useCallback add kiya
 import axios from "axios";
 
 function AdminDashboard() {
@@ -16,7 +49,8 @@ function AdminDashboard() {
 
   const token = localStorage.getItem("token");
 
-  const fetchCandidates = async () => {
+  // 2. Is function ko useCallback se wrap kar diya
+  const fetchCandidates = useCallback(async () => {
     try {
       const res = await axios.get("https://role-based-auth-backend-rc2g.onrender.com/api/admin/candidates", {
         headers: { Authorization: `Bearer ${token}` },
@@ -27,11 +61,14 @@ function AdminDashboard() {
     } catch (err) {
       console.log("Error loading candidates");
     }
-  };
+  }, [token]); // token change hone par ye function recreate hoga
 
+  // 3. Ab fetchCandidates ko dependency array mein daal diya
   useEffect(() => {
     fetchCandidates();
-  }, []);
+  }, [fetchCandidates]); 
+
+  // ... baaki saara code (resetForm, createCandidate, etc.) same rahega ...
 
   const resetForm = () => {
     setName("");
